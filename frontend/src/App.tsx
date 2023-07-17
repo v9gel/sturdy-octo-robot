@@ -4,6 +4,7 @@ import { SubmitHandler } from "react-hook-form";
 import { IUser, PageState } from "./types";
 import { SearchForm } from "./components/SearchForm";
 import { Users } from "./components/Users";
+import { unmaskUserNumber } from "./helpers";
 
 const API_URL = "http://127.0.0.1:3000/search";
 
@@ -25,11 +26,8 @@ export function App() {
         const url = new URL(API_URL);
         url.searchParams.set("email", searchUser.email);
 
-        const unmaskedNumber = searchUser.number
-          .replaceAll("-", "")
-          .replaceAll("_", "");
-
-        if (unmaskedNumber.length) {
+        const unmaskedNumber = unmaskUserNumber(searchUser.number)
+        if (unmaskedNumber) {
           url.searchParams.set("number", unmaskedNumber);
         }
 

@@ -1,4 +1,4 @@
-import { formatUserNumber } from "../helpers";
+import { maskUserNumber } from "../helpers";
 
 interface Props {
   email: string;
@@ -8,7 +8,7 @@ interface Props {
 export function User({ email, number }: Props) {
   return (
     <li>
-      {email} - {formatUserNumber(number)}
+      {email} - {maskUserNumber(number)}
     </li>
   );
 }
